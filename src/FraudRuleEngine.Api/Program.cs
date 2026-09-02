@@ -33,8 +33,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
-
 app.MapPost("/transactions", async (
     TransactionRequest request,
     IEventPublisher eventPublisher,
