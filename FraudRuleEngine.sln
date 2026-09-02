@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{12079F88-17DE-46D2-9C3D-169A49A6FD82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudRuleEngine.Domain", "src\FraudRuleEngine.Domain\FraudRuleEngine.Domain.csproj", "{3BBE1142-29A7-4241-B95C-E1A8C3709A27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudRuleEngine.Application", "src\FraudRuleEngine.Application\FraudRuleEngine.Application.csproj", "{1B49EFE8-E9B0-4E33-A047-DB636552C3B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudRuleEngine.Infrastructure", "src\FraudRuleEngine.Infrastructure\FraudRuleEngine.Infrastructure.csproj", "{95365388-FD58-41A5-8A28-6E6B8C117D58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudRuleEngine.Api", "src\FraudRuleEngine.Api\FraudRuleEngine.Api.csproj", "{16AFC1B5-08D4-49E8-8C09-8D3E2C12DB80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudRuleEngine.Worker", "src\FraudRuleEngine.Worker\FraudRuleEngine.Worker.csproj", "{E376D413-44A1-4F96-A1CF-2D2678E60191}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1909BDDD-DE30-4675-BA96-F474715D4F39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudRuleEngine.UnitTests", "tests\FraudRuleEngine.UnitTests\FraudRuleEngine.UnitTests.csproj", "{BCD5EDA1-CBD2-4CAB-92B3-6CDB05F274DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BBE1142-29A7-4241-B95C-E1A8C3709A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBE1142-29A7-4241-B95C-E1A8C3709A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBE1142-29A7-4241-B95C-E1A8C3709A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBE1142-29A7-4241-B95C-E1A8C3709A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B49EFE8-E9B0-4E33-A047-DB636552C3B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B49EFE8-E9B0-4E33-A047-DB636552C3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B49EFE8-E9B0-4E33-A047-DB636552C3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B49EFE8-E9B0-4E33-A047-DB636552C3B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95365388-FD58-41A5-8A28-6E6B8C117D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95365388-FD58-41A5-8A28-6E6B8C117D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95365388-FD58-41A5-8A28-6E6B8C117D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95365388-FD58-41A5-8A28-6E6B8C117D58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16AFC1B5-08D4-49E8-8C09-8D3E2C12DB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16AFC1B5-08D4-49E8-8C09-8D3E2C12DB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16AFC1B5-08D4-49E8-8C09-8D3E2C12DB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16AFC1B5-08D4-49E8-8C09-8D3E2C12DB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E376D413-44A1-4F96-A1CF-2D2678E60191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E376D413-44A1-4F96-A1CF-2D2678E60191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E376D413-44A1-4F96-A1CF-2D2678E60191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E376D413-44A1-4F96-A1CF-2D2678E60191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCD5EDA1-CBD2-4CAB-92B3-6CDB05F274DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCD5EDA1-CBD2-4CAB-92B3-6CDB05F274DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCD5EDA1-CBD2-4CAB-92B3-6CDB05F274DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCD5EDA1-CBD2-4CAB-92B3-6CDB05F274DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3BBE1142-29A7-4241-B95C-E1A8C3709A27} = {12079F88-17DE-46D2-9C3D-169A49A6FD82}
+		{1B49EFE8-E9B0-4E33-A047-DB636552C3B6} = {12079F88-17DE-46D2-9C3D-169A49A6FD82}
+		{95365388-FD58-41A5-8A28-6E6B8C117D58} = {12079F88-17DE-46D2-9C3D-169A49A6FD82}
+		{16AFC1B5-08D4-49E8-8C09-8D3E2C12DB80} = {12079F88-17DE-46D2-9C3D-169A49A6FD82}
+		{E376D413-44A1-4F96-A1CF-2D2678E60191} = {12079F88-17DE-46D2-9C3D-169A49A6FD82}
+		{BCD5EDA1-CBD2-4CAB-92B3-6CDB05F274DA} = {1909BDDD-DE30-4675-BA96-F474715D4F39}
+	EndGlobalSection
+EndGlobal

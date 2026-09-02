@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-FraudRuleEngine.Worker-5a23b47a-6667-4af3-90b4-6a01a210e70d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FraudRuleEngine.Application\FraudRuleEngine.Application.csproj" />
+    <ProjectReference Include="..\FraudRuleEngine.Infrastructure\FraudRuleEngine.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

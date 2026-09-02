@@ -1,0 +1,57 @@
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: fraudruleengine-rabbitmq
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  postgres:
+    image: postgres:16
+    container_name: fraudruleengine-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: frauddb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - fraudruleengine-postgres-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: src/FraudRuleEngine.Api/Dockerfile
+    container_name: fraudruleengine-api
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      RabbitMQ__Host: rabbitmq
+      RabbitMQ__Username: guest
+      RabbitMQ__Password: guest
+      ConnectionStrings__FraudDatabase: Host=postgres;Port=5432;Database=frauddb;Username=postgres;Password=postgres
+    depends_on:
+      - rabbitmq
+      - postgres
+
+  worker:
+    build:
+      context: .
+      dockerfile: src/FraudRuleEngine.Worker/Dockerfile
+    container_name: fraudruleengine-worker
+    environment:
+      RabbitMQ__Host: rabbitmq
+      RabbitMQ__Username: guest
+      RabbitMQ__Password: guest
+      ConnectionStrings__FraudDatabase: Host=postgres;Port=5432;Database=frauddb;Username=postgres;Password=postgres
+    depends_on:
+      - rabbitmq
+      - postgres
+
+volumes:
+  fraudruleengine-postgres-data:
