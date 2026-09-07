@@ -117,7 +117,7 @@ To stop the application:
 docker compose down
 ```
 
-## API documentaion
+## API documentation
 
 Interactive API documentation is available through Swagger:
 
