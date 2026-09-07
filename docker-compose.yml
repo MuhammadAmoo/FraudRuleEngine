@@ -9,6 +9,12 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   postgres:
     image: postgres:16
@@ -36,8 +42,10 @@ services:
       RabbitMQ__Password: guest
       ConnectionStrings__FraudDatabase: Host=postgres;Port=5432;Database=frauddb;Username=postgres;Password=postgres
     depends_on:
-      - rabbitmq
-      - postgres
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_started
 
   worker:
     build:
@@ -50,8 +58,10 @@ services:
       RabbitMQ__Password: guest
       ConnectionStrings__FraudDatabase: Host=postgres;Port=5432;Database=frauddb;Username=postgres;Password=postgres
     depends_on:
-      - rabbitmq
-      - postgres
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_started
 
 volumes:
   fraudruleengine-postgres-data:

@@ -117,7 +117,11 @@ To stop the application:
 docker compose down
 ```
 
-## API
+## API documentaion
+
+Interactive API documentation is available through Swagger:
+
+http://localhost:8080/swagger
 
 ### Submit a transaction
 

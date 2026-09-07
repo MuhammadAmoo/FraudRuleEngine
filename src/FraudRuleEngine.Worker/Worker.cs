@@ -42,11 +42,50 @@ public sealed class Worker : BackgroundService
             Password = _configuration["RabbitMQ:Password"] ?? "guest"
         };
 
-        _connection = await factory.CreateConnectionAsync(
-            stoppingToken);
+        const int maxAttempts = 10;
+        var retryDelay = TimeSpan.FromSeconds(2);
 
-        _channel = await _connection.CreateChannelAsync(
-            cancellationToken: stoppingToken);
+        for (var attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            try
+            {
+                _logger.LogInformation(
+                    "Connecting to RabbitMQ. Attempt {Attempt}/{MaxAttempts}",
+                    attempt,
+                    maxAttempts);
+
+                _connection = await factory.CreateConnectionAsync(
+                    stoppingToken);
+
+                _channel = await _connection.CreateChannelAsync(
+                    cancellationToken: stoppingToken);
+
+                _logger.LogInformation(
+                    "Successfully connected to RabbitMQ.");
+
+                break;
+            }
+            catch (Exception ex) when (attempt < maxAttempts)
+            {
+                _logger.LogWarning(
+                    ex,
+                    "Unable to connect to RabbitMQ. Retrying in {RetryDelay} seconds.",
+                    retryDelay.TotalSeconds);
+
+                await Task.Delay(
+                    retryDelay,
+                    stoppingToken);
+
+                retryDelay = TimeSpan.FromSeconds(
+                    Math.Min(retryDelay.TotalSeconds * 2, 30));
+            }
+        }
+
+        if (_connection is null || _channel is null)
+        {
+            throw new InvalidOperationException(
+                "Unable to establish a connection to RabbitMQ after multiple attempts.");
+        }
 
         await _channel.QueueDeclareAsync(
             queue: "fraud-transactions",
@@ -61,7 +100,8 @@ public sealed class Worker : BackgroundService
         {
             try
             {
-                var message = Encoding.UTF8.GetString(eventArgs.Body.ToArray());
+                var message = Encoding.UTF8.GetString(
+                    eventArgs.Body.ToArray());
 
                 var transactionEvent =
                     JsonSerializer.Deserialize<TransactionCategorized>(
