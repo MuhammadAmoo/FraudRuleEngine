@@ -57,6 +57,32 @@ Multiple triggered rules are combined to produce the final risk score.
 
 ### Prerequisites
 
+## Docker / NuGet Network Connectivity
+
+The Docker build restores .NET dependencies from NuGet. If `docker compose build` fails with an error such as:
+
+```text
+NU1301: Unable to load the service index for source
+https://api.nuget.org/v3/index.json
+```
+
+this may be caused by the local network environment rather than the application itself. Common causes include corporate firewalls, proxies, DNS restrictions, or network security policies.
+
+### Troubleshooting
+
+1. Ensure Docker Desktop is running.
+2. Verify that the host machine can access NuGet.
+3. If you are behind a corporate proxy, ensure the proxy is configured correctly in Docker Desktop.
+4. As a diagnostic step, try building while connected to an unrestricted network, such as a mobile hotspot.
+5. Re-run the Docker build:
+
+```powershell
+docker compose build
+```
+
+If the build succeeds on an unrestricted network, this indicates that the Docker configuration and project dependencies are valid and that the original failure was related to network connectivity.
+
+
 - Docker Desktop
 
 ### Start the application
